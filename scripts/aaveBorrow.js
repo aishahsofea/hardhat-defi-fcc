@@ -4,8 +4,8 @@ const { networkConfig } = require("../helper-hardhat-config");
 
 async function main() {
   await getWeth();
-  const { deployer } = getNamedAccounts();
-  const lendingPool = getLendingPool(deployer);
+  const { deployer } = await getNamedAccounts();
+  const lendingPool = await getLendingPool(deployer);
   const wethTokenAddress = networkConfig[network.config.chainId].wethToken;
   await approveErc20(wethTokenAddress, lendingPool.address, AMOUNT, deployer);
   console.log("Depositing wETH...");
